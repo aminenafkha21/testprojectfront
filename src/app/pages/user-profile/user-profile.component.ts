@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
 
 
     this.dataService.getArchivedFiles().subscribe((data:any) => {
-      this.all = data;
+      this.all = data['data'];
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)

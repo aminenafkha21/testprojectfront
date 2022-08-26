@@ -8,7 +8,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Documents</h5>
                   <span class="h2 font-weight-bold mb-0">Documents</span>
                 </div>
                 <div class="col-auto">
@@ -18,12 +18,12 @@
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
+                <span class="text-success mr-2">{{docp}}%</span>  <br>
+                <span class="text-nowrap">{{docsize}} of 5MB used </span>
                 
               </p>
               <div class="progress">
-                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{docsize}}%;"></div>
               </div>
             </div>
           </div>
@@ -43,12 +43,12 @@
                 </div>
               </div>
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
+                <span class="text-warning mr-2"> {{imagep}}%</span>  <br>
+                <span class="text-nowrap">{{imagesize}} of 50MB used </span>
               </p>
 
               <div class="progress">
-                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"   style=" width: {{imagep}}%"></div>
               </div>
 
 
@@ -68,15 +68,15 @@
                     <i class="fas fa-video"></i>
                                     </div>
                 </div>
-              </div>
+              </div> 
               <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
+                <span class="text-warning mr-2">{{videop}}%</span> <br>
+                <span class="text-nowrap"> {{videosize}} of 5GB used  </span>
               </p>
 
 
               <div class="progress">
-                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: {{videop}}%;"></div>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
               <h3 class="mb-0">Recent Files</h3>
             </div>
             <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">See all</a>
+              <a  routerLink="/files" class="btn btn-sm btn-primary">See all</a>
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@
             </div>
           </div>
           <div class="col  mt-2">
-            <a routerLink="/user-profile" class="btn btn-sm btn-primary">See all</a>
+            <a routerLink="/archived" class="btn btn-sm btn-primary">See all</a>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@
             </div>
           </div>
           <div class="col mt-2">
-            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+            <a routerLink="/starred" class="btn btn-sm btn-primary">See all</a>
           </div>
         </div>
       </div>

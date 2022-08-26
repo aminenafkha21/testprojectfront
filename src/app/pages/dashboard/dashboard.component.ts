@@ -23,13 +23,21 @@ export class DashboardComponent implements OnInit {
   archived:any=[] ; 
   starred:any =[] ;
   allfiles:any =[] ;
+  imagesize: any ;
+  imagep: any ; 
+
+  docp: any ; 
+  docsize:any ; 
+
+  videop : any ;
+  videosize: any ;
 
   ngOnInit() {
 
 
 
     this.dataService.getArchivedFiles().subscribe((data:any) => {
-      this.archived = data;
+      this.archived = data['data'];
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)
@@ -38,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
 
     this.dataService.getFavouritesFiles().subscribe((data:any) => {
-      this.starred = data;
+      this.starred = data['data'];
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)
@@ -48,7 +56,38 @@ export class DashboardComponent implements OnInit {
 
     
     this.dataService.getAllFiles().subscribe((data:any) => {
-      this.allfiles = data;
+      this.allfiles = data['data'];
+      console.log("chahrass",data)
+    },(err: any) => {
+      console.log("errapsp",err)
+    })
+
+
+      
+    this.dataService.getstorageImages().subscribe((data:any) => {
+      this.imagep = data.pourcentage;
+      this.imagesize = data.size;
+
+      console.log("chahrass",data)
+    },(err: any) => {
+      console.log("errapsp",err)
+    })
+
+
+    this.dataService.getstorageDoc().subscribe((data:any) => {
+      this.docp = data.pourcentage;
+      this.docsize = data.size;
+
+      console.log("chahrass",data)
+    },(err: any) => {
+      console.log("errapsp",err)
+    })
+
+
+    this.dataService.getstorageVideos().subscribe((data:any) => {
+      this.videop = data.pourcentage;
+      this.videosize = data.size;
+
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)

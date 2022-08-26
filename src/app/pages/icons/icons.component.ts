@@ -18,7 +18,7 @@ export class IconsComponent implements OnInit {
 
 
     this.dataService.getAllFiles().subscribe((data:any) => {
-      this.all = data;
+      this.all = data['data'];
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)

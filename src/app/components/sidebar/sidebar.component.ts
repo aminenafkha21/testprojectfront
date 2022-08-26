@@ -1,6 +1,7 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 declare interface RouteInfo {
@@ -11,10 +12,9 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Home',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/icons', title: 'All Files',  icon:'ni-single-copy-04 text-blue', class: '' },
-    { path: '/maps', title: 'Starred',  icon:'ni-favourite-28 text-red', class: '' },
-    { path: '/user-profile', title: 'Archived',  icon:'ni-archive-2 text-orange', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
+    { path: '/files', title: 'All Files',  icon:'ni-single-copy-04 text-blue', class: '' },
+    { path: '/starred', title: 'Starred',  icon:'ni-favourite-28 text-red', class: '' },
+    { path: '/archived', title: 'Archived',  icon:'ni-archive-2 text-orange', class: '' },
 
 ];
 
@@ -25,6 +25,9 @@ export const ROUTES: RouteInfo[] = [
 })
 export class SidebarComponent implements OnInit {
 
+  fileInfos?: Observable<any>;
+
+
   public menuItems: any[];
   public isCollapsed = true;
   selectedFiles: FileList;
@@ -33,6 +36,9 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router,private uploadService: DataService) { }
 
   ngOnInit() {
+
+    this.fileInfos = this.uploadService.getFiles();
+
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
@@ -57,12 +63,15 @@ export class SidebarComponent implements OnInit {
           this.progressInfos[idx].value = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
 
-          console.log('sd')
+          this.message = event.body.message;
+          this.fileInfos = this.uploadService.getFiles();
         }
       },
       err => {
         this.progressInfos[idx].value = 0;
-        this.message = 'Could not upload the file:' + file.name;
+        this.message = 'Could not upload the file: ' + file.name  + ' ' +  err.error;
+
+        console.log('erramine ' , err)
       });
   }
 
@@ -70,6 +79,7 @@ export class SidebarComponent implements OnInit {
     this.message = '';
 
     for (let i = 0; i < this.selectedFiles.length; i++) {
+      console.log('jdsodss',this.selectedFiles[i])
       this.upload(i, this.selectedFiles[i]);
     }
   }

@@ -18,6 +18,7 @@ import { ComponentsModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 
+import { NotifierModule } from 'angular-notifier';
 
 @NgModule({
   
@@ -26,12 +27,12 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     CommonModule,
     BrowserAnimationsModule,
-
     HttpClientModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
     ToastrModule.forRoot(), // ToastrModule added
+    NotifierModule
 
      
   ],

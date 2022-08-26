@@ -79,15 +79,11 @@
       </form>
 
 
-            <!--default html file upload button-->
-      <input type="file" id="actual-btn" style="display: none;"  multiple (change)="selectFiles($event)"/>
+  
 
-        <!--our custom file upload button-->
-        <label for="actual-btn" class="btn btn-icon btn-3 btn-primary" >
 
-          <span class="btn-inner--icon"><i class="ni ni-cloud-upload-96"></i></span>
-                <span class="btn-inner--text">Upload</span>
-        </label>
+
+  
       <!-- Navigation -->
       <ul class="navbar-nav">
           <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
@@ -118,21 +114,41 @@
         </div>
       </div>
       
-      <label class="btn btn-default">
-        <input type="file" multiple (change)="selectFiles($event)" />
-      </label>
+    
+
+
+                <!--default html file upload button-->
+                <input type="file" id="actual-btn" style="display: none;"  multiple (change)="selectFiles($event)"/>
+
+                <!--our custom file upload button-->
+                <label for="actual-btn" class="btn btn-icon btn-3 btn-primary" >
+        
+                  <span class="btn-inner--icon"><i class="ni ni-cloud-upload-96"></i></span>
+                        <span class="btn-inner--text">Upload</span>
+                </label>
       
       <button
         class="btn btn-success"
-        [disabled]="!selectedFiles"
+        *ngIf="selectedFiles"
         (click)="uploadFiles()"
       >
-        Upload
+         Progress
       </button>
       
-      <div class="alert alert-light" role="alert">{{ message }}</div>
+      <div class="alert alert-light mt-3" role="alert" *ngIf="message">{{ message }}</div>
       
 
+      <div class="card mt-3" *ngIf="selectedFiles">
+        <div class="card-header">Last 3 Files Uploaded</div>
+        <ul
+          class="list-group list-group-flush"
+          *ngFor="let file of fileInfos  | async  | slice:0:3;"
+        >
+          <li class="list-group-item">
+            <a href="{{ file.url }}">{{ file.name }}</a>
+          </li>
+        </ul>
+      </div>
 
   
     </div>

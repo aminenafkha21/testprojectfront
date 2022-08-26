@@ -19,7 +19,7 @@ export class MapsComponent implements OnInit {
 
 
     this.dataService.getFavouritesFiles().subscribe((data:any) => {
-      this.all = data;
+      this.all = data['data'];
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)

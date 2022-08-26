@@ -59,7 +59,7 @@ export class DataService {
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
-    formData.append('files', file);
+    formData.append('files[]', file);
 
     const req = new HttpRequest('POST', `${this.BASE_URL}/api/v1/upload`, formData, {
       reportProgress: true,
@@ -67,5 +67,25 @@ export class DataService {
     });
 
     return this.httpClient.request(req);
+  }
+
+  getFiles(): Observable<any> {
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/files`);
+  }
+
+
+
+  getstorageVideos(){
+
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/storagevideo`);
+  }
+  getstorageImages(){
+
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/storageimages`);
+  }
+
+  getstorageDoc(){
+
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/storagedoc`);
   }
 }
